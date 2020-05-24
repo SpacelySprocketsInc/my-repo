@@ -2,7 +2,7 @@ name: Label issues that need first responding
 on:
   issues:
     types: [opened]
-  pull_requests:
+  pull_request:
     types: [opened]
 
 jobs:
