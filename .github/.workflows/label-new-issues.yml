@@ -1,0 +1,20 @@
+name: Label issues that need first responding
+on:
+  issues:
+    types: [opened]
+  pull_requests:
+    types: [opened]
+
+jobs:
+  first-responder-label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Label new issues with needs-fr
+      uses: rachmari/labeler@ignore-team-members
+      if: ( !contains(github.event.issue.labels.*.name, 'project-triaged'))
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        add-labels: "needs-fr"
+        team: "rachmari-sprokets-inc/teamjacob"
