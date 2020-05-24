@@ -15,6 +15,6 @@ jobs:
       uses: rachmari/labeler@ignore-team-members
       if: ( !contains(github.event.issue.labels.*.name, 'project-triaged'))
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
         team: "rachmari-sprokets-inc/teamjacob"
