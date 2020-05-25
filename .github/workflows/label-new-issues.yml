@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Label new issues with needs-fr
-      uses: rachmari/labeler@v1.0.3
+      uses: rachmari/labeler@rachmari-test-1
       if: ( !contains(github.event.issue.labels.*.name, 'project-triaged'))
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
