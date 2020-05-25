@@ -1,3 +1,4 @@
 # my-repo
 
 Welcome!
+:octocat:
