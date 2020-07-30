@@ -20,7 +20,7 @@ jobs:
         team: "rachmari-sprokets-inc/teamjacob"
     - name: Triage to FR project board
       uses: konradpabjan/actions-add-new-issue-to-column@v1.1
-      if: contains(github.event.issue.labels.*.name, 'ecosystem-pb') || contains(github.event.issue.labels.*.name, 'core-pb')
+      if: ( !ccontains(github.event.issue.labels.*.name, 'ecosystem-pb') || !contains(github.event.issue.labels.*.name, 'core-pb'))
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
