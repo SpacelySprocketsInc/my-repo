@@ -38,12 +38,12 @@ jobs:
           script: |
             var column_id = 10237741;
             try {
-              const val = await github.projects.createCard({
+              github.projects.createCard({
                 column_id: column_id,
                 content_id: context.payload.pull_request.id,
                 content_type: "PullRequest"
               });
               console.log(val)
             } catch (error) {
-              console.log(error);
+              console.log(error.message);
             }
