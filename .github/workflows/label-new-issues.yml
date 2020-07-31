@@ -24,8 +24,25 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Triage to FR project board
       uses: konradpabjan/actions-add-new-issue-to-column@v1.1
-      if: ( !contains(github.event.issue.labels.*.name, 'ecosystem-pb') || !contains(github.event.issue.labels.*.name, 'core-pb'))
+      if: github.event_name == 'issues' && ( !contains(github.event.issue.labels.*.name, 'ecosystem-pb') || !contains(github.event.issue.labels.*.name, 'core-pb'))
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
         column-name: "FR issues"
+        
+    - name: Add issues with engineering label to project board
+      if: github.event_name == 'pull_request' && (!contains(github.event.issue.labels.*.name, 'ecosystem-pb') || contains(github.event.issue.labels.*.name, 'core-pb'))
+      uses: actions/github-script@v2
+      with:
+          github-token: ${{ secrets.REPO_ALL_ORG_READ }} 
+          script: |
+            var column_id = 10237741;
+            try {
+              github.projects.createCard({
+                column_id: column_id,
+                content_id: context.payload.pull_request.id,
+                content_type: "PullRequest"
+              });
+            } catch (error) {
+              console.log(error);
+            }
