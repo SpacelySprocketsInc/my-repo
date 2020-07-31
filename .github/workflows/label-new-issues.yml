@@ -43,7 +43,6 @@ jobs:
                 content_id: context.payload.pull_request.id,
                 content_type: "PullRequest"
               });
-              console.log(val)
             } catch (error) {
               console.log(error.message);
             }
