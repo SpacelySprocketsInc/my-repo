@@ -1,7 +1,7 @@
 name: Label issues that need first responding
 on:
   issues:
-    types: [opened]
+    types: [reopened, opened]
   pull_request:
     types: [reopened, opened]
 
