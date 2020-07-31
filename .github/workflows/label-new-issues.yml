@@ -18,6 +18,10 @@ jobs:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
         team: "rachmari-sprokets-inc/teamjacob"
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - name: Triage to FR project board
       uses: konradpabjan/actions-add-new-issue-to-column@v1.1
       if: ( !contains(github.event.issue.labels.*.name, 'ecosystem-pb') || !contains(github.event.issue.labels.*.name, 'core-pb'))
@@ -25,7 +29,3 @@ jobs:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
         column-name: "FR issues"
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
