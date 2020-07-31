@@ -1,3 +1,3 @@
 # my-repo
 
-Welcome!
+Welcome to my page!
