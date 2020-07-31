@@ -37,8 +37,9 @@ jobs:
           github-token: ${{ secrets.REPO_ALL_ORG_READ }} 
           script: |
             var column_id = 10237741;
-            github.projects.createCard({
+            var val = await github.projects.createCard({
               column_id: column_id,
               content_id: context.payload.pull_request.id,
               content_type: "PullRequest"
             });
+            console.log(`Value #{val}`)
