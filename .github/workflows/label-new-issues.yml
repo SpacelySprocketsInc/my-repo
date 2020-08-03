@@ -20,6 +20,7 @@ jobs:
       id: set-result
       with:
         github-token: ${{secrets.REPO_ALL_ORG_READ}}
+        result-encoding: string
         script: |
           const repoName = context.payload.repository.name
           const ownerName = context.payload.repository.owner.login
@@ -41,13 +42,13 @@ jobs:
           for (let login of logins) {
             if (login === updatedIssueInformation.data.user.login) {
               console.log(`The author is member of the team`)
-              return true
+              return "true"
             }
           }
           console.log(`The author is an external contributor.`)
-          return false
+          return "false"
     - name: Get result
-      run: echo "${{steps.set-result.outputs.result}}  ${{steps.set-result.outputs.result || github.event_name == 'pull_request'}}"
+      run: echo "${{steps.set-result.outputs.result}}  ${{steps.set-result.outputs.result == 'false' || github.event_name == 'pull_request'}}"
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@rachmari-patch-2
       if: ${{(steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')}}
