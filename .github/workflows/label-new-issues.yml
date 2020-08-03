@@ -35,7 +35,7 @@ jobs:
             issue_number: issueNumber
           })
           const teamMembers = await github.request(
-            `/orgs/spacelysprocketsinc/teams/teamedward/members`
+            `/orgs/spacelysprocketsinc/teams/bestest-team/members`
           )
           const logins = teamMembers.data.map(member => member.login)
           for (let login of logins) {
