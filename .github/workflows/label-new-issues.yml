@@ -52,7 +52,7 @@ jobs:
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
-        team: "spacelysprocketsinc/teamedward"
+        team: "spacelysprocketsinc/bestest-team"
     - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
       if: steps.set-result.outputs.result == false && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
