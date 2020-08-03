@@ -23,7 +23,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
