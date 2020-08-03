@@ -47,7 +47,7 @@ jobs:
           console.log(`The author is an external contributor.`)
           return false
     - name: Get result
-      run: echo "${{steps.set-result.outputs.result}}  ${{steps.set-result.outputs.result == false && github.event_name == 'pull_request'}}"
+      run: echo "${{steps.set-result.outputs.result}}  ${{steps.set-result.outputs.result || github.event_name == 'pull_request'}}"
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@rachmari-patch-2
       if: ${{(steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')}}
