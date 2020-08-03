@@ -17,14 +17,20 @@ jobs:
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
-        team: "rachmari-sprokets-inc/teamjacob"
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - name: Triage to FR project board
+    - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: ( !contains(github.event.issue.labels.*.name, 'ecosystem-pb') || !contains(github.event.issue.labels.*.name, 'core-pb'))
+      if: github.event_name == 'pull_request'
+      with:
+        action-token: ${{ secrets.REPO_ALL_ORG_READ }}
+        project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
+        column-name: "FR pull requests"
+    - name: Triage to FR issue project column
+      uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
+      if: github.event_name == 'issues'
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
