@@ -40,10 +40,11 @@ jobs:
           const logins = teamMembers.data.map(member => member.login)
           for (let login of logins) {
             if (login === updatedIssueInformation.data.user.login) {
-              console.log(`No action being taken. Ignoring because the author of the issue or pull request is part of the github/docs team`)
+              console.log(`The author is member of the team`)
               return true
             }
           }
+          console.log(`The author is an external contributor.`)
           return false
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@rachmari-patch-2
