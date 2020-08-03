@@ -15,6 +15,7 @@ jobs:
       uses: actions/github-script@v2.0.0
       id: set-result
       with:
+        github-token: ${{secrets.REPO_ALL_ORG_READ}}
         script: |
             const teamMembers = await github.request(
               `/orgs/spacelysprocketsinc/teams/teamedward/members`
