@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - name: Check if the event originated from a team memmber
       uses: actions/github-script@v2.0.0
       id: set-result
@@ -43,14 +47,10 @@ jobs:
           return false
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@v1.0.3
-      if: (steps.set-result.outputs.result == false && github.event_name == 'pull_request') || github.event_name == 'issues'
+      if: (steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
     - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
       if: steps.set-result.outputs.result == false && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
