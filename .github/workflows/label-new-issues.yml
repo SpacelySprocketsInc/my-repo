@@ -46,7 +46,7 @@ jobs:
           }
           return false
     - name: Label new issues with needs-fr
-      uses: rachmari/labeler@vrachmari-patch-2
+      uses: rachmari/labeler@rachmari-patch-2
       if: (steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
