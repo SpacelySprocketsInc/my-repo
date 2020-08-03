@@ -22,6 +22,7 @@ jobs:
             const logins = teamMembers.data.map(member => member.login)
             for (let login of logins) {
               if (login === updatedIssueInformation.data.user.login) {
+                console.log(`No action being taken. Ignoring because the author of the issue or pull request is part of the github/docs team`)
                 return true
               }
             }
