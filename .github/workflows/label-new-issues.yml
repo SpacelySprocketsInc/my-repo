@@ -48,24 +48,24 @@ jobs:
           console.log(`The author is an external contributor.`)
           return "false"
     - name: Get result
-      run: echo "${{steps.set-result.outputs.result}}  ${{steps.set-result.outputs.result == 'false' || github.event_name == 'pull_request'}}"
+      run: echo "${{steps.set-result.outputs.result}}"
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@rachmari-patch-2
-      if: ${{(steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')}}
+      if: (steps.set-result.outputs.result == 'false' && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
         team: "spacelysprocketsinc/bestest-team"
     - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: ${{steps.set-result.outputs.result == false && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')}}
+      if: steps.set-result.outputs.result == 'false' && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
         column-name: "FR pull requests"
     - name: Triage to FR issue project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: ${{github.event_name == 'issues' || github.event.label.name == 'needs-fr'}}
+      if: github.event_name == 'issues' || github.event.label.name == 'needs-fr'
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
