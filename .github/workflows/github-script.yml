@@ -1,4 +1,4 @@
-name: Label issues that need first responding
+name: Dispatch
 on:
   workflow_dispatch
 
