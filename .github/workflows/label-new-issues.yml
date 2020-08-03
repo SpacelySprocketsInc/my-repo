@@ -3,7 +3,7 @@ on:
   issues:
     types: [reopened, opened, labeled]
   pull_request:
-    types: [reopened, opened]
+    types: [reopened, opened, labeled]
 
 jobs:
   first-responder-label:
