@@ -48,6 +48,8 @@ jobs:
           return false
     - name: Get result
       run: echo "${{steps.set-result.outputs.result}}"
+    - name: ${{steps.set-result.outputs.result}} == false && ${{github.event_name}} == 'pull_request'
+      run: echo "YAY"
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@rachmari-patch-2
       if: (steps.set-result.outputs.result == false && github.event_name == 'pull_request') || (github.event_name == 'issues' && github.event.action != 'labeled')
