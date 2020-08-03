@@ -16,7 +16,7 @@ jobs:
       id: set-result
       with:
         script: |
-            const teamMembers = await octokit.request(
+            const teamMembers = await github.request(
               `/orgs/spacelysprocketsinc/teams/teamedward/members`
             )
             const logins = teamMembers.data.map(member => member.login)
