@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@v1.0.3
-      if: ( !contains(github.event.issue.labels.*.name, 'project-triaged'))
+      if: github.event_name == 'pull_request' || github.event_name == 'issues'
       with:
         repo-token: "${{ secrets.REPO_ALL_ORG_READ }}"
         add-labels: "needs-fr"
@@ -30,7 +30,7 @@ jobs:
         column-name: "FR pull requests"
     - name: Triage to FR issue project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: github.event_name == 'issues'
+      if: github.event_name == 'issues' || github.event.label.name == 'needs-fr'
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
