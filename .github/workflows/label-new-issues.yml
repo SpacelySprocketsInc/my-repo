@@ -11,6 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check if the event originated from a team memmber
+      uses: actions/github-script@v2.0.0
+      id: set-result
+      with:
+        script: |
+            const teamMembers = await octokit.request(
+              `/orgs/spacelysprocketsinc/teams/teamedward/members`
+            )
+            const logins = teamMembers.data.map(member => member.login)
+            for (let login of logins) {
+              if (login === updatedIssueInformation.data.user.login) {
+                return true
+              }
+            }
+            return false
     - name: Label new issues with needs-fr
       uses: rachmari/labeler@v1.0.3
       if: github.event_name == 'pull_request' || github.event_name == 'issues'
@@ -23,7 +38,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Triage to FR PR project column
       uses: rachmari/actions-add-new-issue-to-column@rachmari-allow-prs
-      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+      if: steps.set-result.outputs.result == false && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
       with:
         action-token: ${{ secrets.REPO_ALL_ORG_READ }}
         project-url: "https://github.com/SpacelySprocketsInc/my-repo/projects/1"
