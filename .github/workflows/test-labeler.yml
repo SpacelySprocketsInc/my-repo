@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:    
       - name: Add needs-triage label  
-        uses: andymckay/labeler@1.0.2
+        uses: rachmari/labeler@rachmari-fix-remove-only-bug
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           remove-labels: "needs-fr"
