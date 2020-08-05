@@ -13,4 +13,5 @@ jobs:
         if: contains(github.event.issue.labels.*.name, 'core')
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          remove-labels: "needs-fr"
+          add-labels: "bug, enhancement"
+          remove-labels: "needs-fr, documentation"
