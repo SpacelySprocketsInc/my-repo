@@ -10,6 +10,7 @@ jobs:
     steps:    
       - name: Add needs-triage label  
         uses: rachmari/labeler@rachmari-fix-remove-only-bug
+        if: contains(github.event.issue.labels.*.name, 'core')
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           remove-labels: "needs-fr"
