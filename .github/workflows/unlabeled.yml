@@ -25,7 +25,7 @@ jobs:
             column_id: 11130889
           })
           console.log(cards)
-          cards.forEach(card => {
+          cards.data.forEach(card => {
             if (card.content_url !== undefined) {
               const cardIssueNumber = card.content_url.split('/').pop()
               if (cardIssueNumber === issueToRemove) {
