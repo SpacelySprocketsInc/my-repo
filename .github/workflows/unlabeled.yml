@@ -1,0 +1,14 @@
+name: First responder docs-content
+on:
+  issues:
+    types: [unlabeled]
+
+jobs:
+  first-responder-triage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
