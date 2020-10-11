@@ -1,10 +1,11 @@
-name: First responder docs-content
+name: First responder docs-content-fr issues
 on:
   issues:
     types: [unlabeled]
 
 jobs:
-  first-responder-triage:
+  first-responder-removed-unlabeled:
+    if: github.event.label.name == 'docs-content-fr'
     runs-on: ubuntu-latest
 
     steps:
@@ -12,3 +13,25 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
+    - name: Remove card from project
+      uses: actions/github-script@v2.0.0
+      with:
+        github-token: ${{secrets.DOCUBOT_FR}}
+        result-encoding: string
+        script: |
+          const issueToRemove = context.payload.issue.number
+          console.log(`Remove issue: ${issueToRemove}`)
+          const cards = await github.projects.listCards({
+            column_id: 11130889
+          })
+          console.log(cards)
+          cards.forEach(card => {
+            if (card.content_url !== undefined) {
+              const cardIssueNumber = card.content_url.split('/').pop()
+              if (cardIssueNumber === issueToRemove) {
+                const cards = github.projects.deleteCard({
+                  card_id: card.id
+                })
+              }
+            }
+          })
