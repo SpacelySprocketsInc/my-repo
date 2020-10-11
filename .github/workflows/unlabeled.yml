@@ -16,7 +16,7 @@ jobs:
     - name: Remove card from project
       uses: actions/github-script@v2.0.0
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.REPO_ALL_ORG_READ}}
         result-encoding: string
         script: |
           const issueToRemove = context.payload.issue.number
