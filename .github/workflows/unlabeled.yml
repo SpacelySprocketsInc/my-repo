@@ -24,11 +24,12 @@ jobs:
           const cards = await github.projects.listCards({
             column_id: 11130889
           })
-          console.log(cards)
           cards.data.forEach(card => {
-            if (card.content_url !== undefined) {
+            if (card.content_url) {
               const cardIssueNumber = card.content_url.split('/').pop()
+              console.log(cardIssueNumber)
               if (cardIssueNumber === issueToRemove) {
+                console.log("Deleting card")
                 const cards = github.projects.deleteCard({
                   card_id: card.id
                 })
