@@ -28,7 +28,7 @@ jobs:
             if (card.content_url) {
               const cardIssueNumber = card.content_url.split('/').pop()
               console.log(cardIssueNumber)
-              if (cardIssueNumber === issueToRemove) {
+              if (cardIssueNumber == issueToRemove) {
                 console.log("Deleting card")
                 const cards = github.projects.deleteCard({
                   card_id: card.id
