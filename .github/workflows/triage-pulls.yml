@@ -63,7 +63,7 @@ jobs:
         github-token: ${{secrets.MY_PAT}}
         result-encoding: string
         script: |
-          const issueToRemove = context.payload.issue.number
+          const issueToRemove = context.payload.number
           const cards = await github.projects.listCards({
             column_id: 10237741
           })
