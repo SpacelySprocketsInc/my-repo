@@ -1,0 +1,44 @@
+name: First responder triage
+on:
+  workflow_dispatch:
+  schedule:	
+    - cron:  '0 * * * *'
+
+jobs:
+  first-responder-product:
+    name: Spacely product team pings
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get team pings for Spacely product division
+      uses: rachmari/first-responder@rachmari-fix-5-6-7
+      with:
+        token: ${{secrets.FR_ACCESS_TOKEN}}
+        team: 'TeamEdward'
+        org: 'spacelysprocketsinc'
+        since: '2020-08-05'
+        project-board: 'https://github.com/orgs/spacelysprocketsinc/projects/1'
+        project-column: 2064490
+        ignore-repos: 'spacelysprocketsinc/product-spacely, spacelysprocketsinc/product-spacely-sprockets'
+        ignore-authors: 'github-actions, sprocketbot'
+        ignore-commenters: 'sprocketbot'
+        comment-body: ':rocket: Thanks for the ping! :bellhop_bell: This issue was added to our first-responder project board. A team member will be along shortly to review this issue.'
+
+  first-responder-product-subteam:
+    name: Spacely product sprockets pings
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get team pings for Spacely sprockets product division
+      uses: rachmari/first-responder@rachmari-fix-5-6-7
+      with:
+        token: ${{secrets.FR_ACCESS_TOKEN}}
+        team: 'TeamJacob'
+        org: 'spacelysprocketsinc'
+        since: '2020-08-05'
+        project-board: 'https://github.com/orgs/spacelysprocketsinc/projects/1'
+        project-column: 2064490
+        ignore-repos: 'spacelysprocketsinc/product-spacely, spacelysprocketsinc/product-spacely-sprockets'
+        ignore-authors: 'github-actions, sprocketbot'
+        ignore-commenters: 'sprocketbot'
+        comment-body: ':robot: Thanks for the ping to team sprockets! :bellhop_bell: This issue was added to our first-responder project board. A team member will be along shortly to review this issue.'
