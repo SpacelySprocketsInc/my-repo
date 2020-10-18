@@ -22,6 +22,7 @@ jobs:
         ignore-repos: 'spacelysprocketsinc/product-spacely, spacelysprocketsinc/product-spacely-sprockets'
         ignore-authors: 'github-actions, sprocketbot'
         ignore-commenters: 'sprocketbot'
+        ignore-labels: 'ignoreMe'
         comment-body: ':rocket: Thanks for the ping! :bellhop_bell: This issue was added to our first-responder project board. A team member will be along shortly to review this issue.'
 
   first-responder-product-subteam:
@@ -41,4 +42,5 @@ jobs:
         ignore-repos: 'spacelysprocketsinc/product-spacely, spacelysprocketsinc/product-spacely-sprockets'
         ignore-authors: 'github-actions, sprocketbot'
         ignore-commenters: 'sprocketbot'
+        ignore-labels: 'ignoreMe'
         comment-body: ':robot: Thanks for the ping to team sprockets! :bellhop_bell: This issue was added to our first-responder project board. A team member will be along shortly to review this issue.'
