@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - name: Check if the event originated from a team member
       uses: actions/github-script@v2.0.0
       id: set-result
