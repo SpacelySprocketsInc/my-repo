@@ -1,4 +1,4 @@
-name: First responder triage
+name: First responder team pings
 on:
   workflow_dispatch:
 
