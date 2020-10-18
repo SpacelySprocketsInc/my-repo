@@ -1,11 +1,11 @@
 name: First responder docs-content
 on:
   pull_request:
-    types: [reopened, opened, ready_for_review, unlabeled]
+    types: [reopened, opened, ready_for_review, closed, unlabeled]
 
 jobs:
   first-responder-triage:
-    if: github.repository == 'spacelysprocketsinc/my-repo' && github.event.pull_request.draft == false && github.event.action != 'unlabeled'
+    if: github.repository == 'spacelysprocketsinc/my-repo' && github.event.pull_request.draft == false && github.event.action != 'unlabeled' && github.event.action != 'closed'
     runs-on: ubuntu-latest
 
     steps:
@@ -53,7 +53,7 @@ jobs:
         column-name: "FR issues"
 
   first-responder-label-removed:
-    if: github.event.label.name == 'docs-content-fr' && github.event.action == 'unlabeled'
+    if: github.event.label.name == 'docs-content-fr' && (github.event.action == 'unlabeled' || github.event.action == 'closed')
     runs-on: ubuntu-latest
 
     steps:
