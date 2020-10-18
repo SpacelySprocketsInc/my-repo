@@ -82,6 +82,7 @@ jobs:
             }
           })
     - name: Remove docs-content-fr label if not already removed
+      if: github.event.action == 'closed'
       uses: rachmari/labeler@v1.0.4
       with:
         repo-token: "${{ secrets.MY_PAT }}"
