@@ -81,3 +81,8 @@ jobs:
               }
             }
           })
+    - name: Remove docs-content-fr label if not already removed
+      uses: rachmari/labeler@v1.0.4
+      with:
+        repo-token: "${{ secrets.MY_PAT }}"
+        remove-labels: "docs-content-fr"
