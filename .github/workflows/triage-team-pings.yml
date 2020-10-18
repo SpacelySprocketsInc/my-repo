@@ -1,8 +1,6 @@
 name: First responder triage
 on:
   workflow_dispatch:
-  schedule:	
-    - cron:  '0 * * * *'
 
 jobs:
   first-responder-product:
