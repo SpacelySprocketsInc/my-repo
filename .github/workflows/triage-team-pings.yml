@@ -12,7 +12,7 @@ jobs:
       uses: rachmari/first-responder@rachmari-fix-5-6-7
       with:
         token: ${{secrets.MY_PAT}}
-        team: 'TeamEdward'
+        team: 'bestest-team'
         org: 'spacelysprocketsinc'
         since: '2020-08-05'
         project-board: 'https://github.com/orgs/spacelysprocketsinc/projects/1'
