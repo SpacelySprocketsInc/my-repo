@@ -1,4 +1,10 @@
 name: Manually triggered workflow
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Hello world!"
+        echo "- in !"
