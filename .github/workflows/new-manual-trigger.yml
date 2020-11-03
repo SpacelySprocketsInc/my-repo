@@ -1,10 +1,11 @@
 name: Manually triggered workflow
-on: workflow_dispatch
+on: issue_comment
 
 jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Hello world!"
-        echo "- in !"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
