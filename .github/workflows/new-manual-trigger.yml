@@ -18,4 +18,8 @@ jobs:
   
     steps:
       - name: echo
-        run: echo "Issue commented"
+        run: |
+          echo "Issue commented"
+          echo "::group::My title"
+          echo "Inside group"
+          echo "::endgroup::"
