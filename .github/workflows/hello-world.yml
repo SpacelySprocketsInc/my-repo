@@ -1,4 +1,4 @@
-name: Say hello!
+name: Say hello
 
 # Run this workflow manually from the UI
 on:
