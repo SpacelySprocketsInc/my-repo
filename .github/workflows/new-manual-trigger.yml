@@ -1,5 +1,7 @@
 name: Manually triggered workflow
-on: workflow_run
+on: 
+  workflow_run:
+      workflows:["Say hello!"]
 
 jobs:
   pr-commented:
