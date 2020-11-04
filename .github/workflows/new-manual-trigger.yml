@@ -1,8 +1,8 @@
 name: Manually triggered workflow
 on:
   workflow_run:
-    workflows: ["Say hello!"]
-    types: ["requested"]
+    workflows: Say hello
+    types: ["complete", "requested"]
 
 jobs:
   pr-commented:
