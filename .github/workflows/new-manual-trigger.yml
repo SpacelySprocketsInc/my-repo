@@ -1,5 +1,5 @@
 name: Manually triggered workflow
-on: issue_comment
+on: workflow_run
 
 jobs:
   pr-commented:
@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: echo
         run: |
+          echo GITHUB_SHA: $GITHUB_SHA
           echo "Issue commented"
           echo "::group::My title"
           echo "Inside group"
