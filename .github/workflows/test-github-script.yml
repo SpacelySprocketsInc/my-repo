@@ -19,5 +19,5 @@ jobs:
             if (context.eventName == 'pull_request') {
               console.log(context.payload.number)
             } else {
-              console.log(Push event)
+              console.log('Push event')
             }
