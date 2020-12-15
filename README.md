@@ -2,5 +2,3 @@
 
 Welcome to my page!
 :wave:
-
-hiiiiii
