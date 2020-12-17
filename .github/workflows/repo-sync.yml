@@ -33,7 +33,7 @@ jobs:
                 pull_number: '326'
               })
               console.log(`Attempted to update the branch:\n`)
-              console.log(updateBranch)
+              console.log(updateBranch.data.message)
             } else {
               console.log(`Branches are already up-to-date`)
             }
