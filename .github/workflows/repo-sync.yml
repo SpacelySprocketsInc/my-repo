@@ -25,7 +25,7 @@ jobs:
               pull_number: '326'
             })
             
-            console.log(`Pull: JSON.stringify(${pull.data})`)
+            console.log(`pull.data`)
             
             if (latestSha.data.object.sha !== pull.data.base.sha) {
               console.log(`Updating the branch`)
