@@ -18,18 +18,18 @@ jobs:
             const latestSha = await github.git.getRef({
               ...context.repo,
               ref: 'heads/master'
-            }).data.object.sha
-            console.log(`heads/master sha: ${latestSha}`)
+            })
+            console.log(`heads/master sha: ${latestSha.data.object.sha}`)
 
             const pullBaseSha = await github.pulls.get({
               ...context.repo,
-              pull_number: '326'
-            }).data.base.sha
+              pull_number: 326
+            })
             
-            if (latestSha !== pullBaseSha) {
+            if (latestSha.data.object.sha !== pullBaseSha.data.base.sha) {
               const updateBranch = await github.pulls.updateBranch({
                 ...context.repo,
-                pull_number: '326'
+                pull_number: 326
               })
               console.log(updateBranch.data.message)
             } else {
