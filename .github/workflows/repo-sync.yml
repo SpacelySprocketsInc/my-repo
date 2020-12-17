@@ -18,7 +18,7 @@ jobs:
               ...context.repo,
               ref: 'heads/master'
             })
-            console.log(`Latest Sha: ${latestSha.data.object.sha}`)
+            console.log(`Latest Sha: ${latestSha}`)
 
             const pull = github.pulls.get({
               ...context.repo,
