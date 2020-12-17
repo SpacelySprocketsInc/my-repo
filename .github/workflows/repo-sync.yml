@@ -32,7 +32,8 @@ jobs:
                 ...context.repo,
                 pull_number: '326'
               })
-              console.log(`Attempted to update the branch:\n${updateBranch.data.message}`)
+              console.log(`Attempted to update the branch:\n`
+              console.log(updateBranch)
             } else {
               console.log(`Branches are already up-to-date`)
             }
