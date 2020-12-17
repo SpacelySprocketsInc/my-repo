@@ -14,13 +14,13 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const latestSha = github.git.getRef({
+            const latestSha = await github.git.getRef({
               ...context.repo,
               ref: 'heads/master'
             })
             console.log(`Latest Sha: ${latestSha}`)
 
-            const pull = github.pulls.get({
+            const pull = await github.pulls.get({
               ...context.repo,
               pull_number: '325'
             })
@@ -28,7 +28,7 @@ jobs:
             console.log(`Pull: ${pull.data}`)
             
             if (latestSha.data.object.sha !== pull.data.base.sha) {
-              const updateBranch = github.pulls.updateBranch({
+              const updateBranch = await github.pulls.updateBranch({
                 ...context.repo,
                 pull_number: '325'
               })
