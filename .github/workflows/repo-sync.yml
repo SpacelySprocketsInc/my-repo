@@ -22,7 +22,7 @@ jobs:
 
             const pull = github.pulls.get({
               ...context.repo,
-              pull_number: ${{ steps.find-pull-request.outputs.number }}
+              pull_number: '322'
             }).data
             
             console.log(`Pull: ${pull}`)
@@ -30,7 +30,7 @@ jobs:
             if (latestSha !== pull.base.sha) {
               const updateBranch = github.pulls.updateBranch({
                 ..context.repo,
-                pull_number: ${{ steps.find-pull-request.outputs.number }}
+                pull_number: '322'
               })
               console.log(`Attempted to update the branch:\n${updateBranch}`)
             }
