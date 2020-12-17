@@ -22,15 +22,15 @@ jobs:
 
             const pull = github.pulls.get({
               ...context.repo,
-              pull_number: '324'
+              pull_number: '325'
             })
             
             console.log(`Pull: ${pull.data}`)
             
             if (latestSha.data.object.sha !== pull.data.base.sha) {
               const updateBranch = github.pulls.updateBranch({
-                ..context.repo,
-                pull_number: '324'
+                ...context.repo,
+                pull_number: '325'
               })
               console.log(`Attempted to update the branch:\n${updateBranch}`)
             }
