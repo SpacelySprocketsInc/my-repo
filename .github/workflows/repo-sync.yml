@@ -18,19 +18,20 @@ jobs:
               ...context.repo,
               ref: 'heads/master'
             })
-            console.log(`Latest Sha: ${latestSha}`)
+            console.log(`Latest Sha: ${latestSha.data.object.sha}`)
 
             const pull = await github.pulls.get({
               ...context.repo,
-              pull_number: '325'
+              pull_number: '326'
             })
             
             console.log(`Pull: ${pull.data}`)
             
             if (latestSha.data.object.sha !== pull.data.base.sha) {
+              console.log(`Updating the branch`)
               const updateBranch = await github.pulls.updateBranch({
                 ...context.repo,
-                pull_number: '325'
+                pull_number: '326'
               })
               console.log(`Attempted to update the branch:\n${updateBranch}`)
             }
