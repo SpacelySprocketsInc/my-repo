@@ -17,20 +17,20 @@ jobs:
             const latestSha = github.git.getRef({
               ...context.repo,
               ref: 'heads/master'
-            }).data.object.sha
-            console.log(`Latest Sha: ${latestSha}`)
+            })
+            console.log(`Latest Sha: ${latestSha.data.object.sha}`)
 
             const pull = github.pulls.get({
               ...context.repo,
-              pull_number: '323'
-            }).data
+              pull_number: '324'
+            })
             
-            console.log(`Pull: ${pull}`)
+            console.log(`Pull: ${pull.data}`)
             
-            if (latestSha !== pull.base.sha) {
+            if (latestSha.data.object.sha !== pull.data.base.sha) {
               const updateBranch = github.pulls.updateBranch({
                 ..context.repo,
-                pull_number: '323'
+                pull_number: '324'
               })
               console.log(`Attempted to update the branch:\n${updateBranch}`)
             }
