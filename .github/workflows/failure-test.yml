@@ -1,4 +1,4 @@
-name: Repo Sync
+name: test failure
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 env:
   FREEZE: ${{ secrets.FREEZE }}
   
- jobs:
+jobs:
   check-freezer:
     name: Check for deployment freezes
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ env:
         run: |
           echo 'The repo is currently frozen! Exiting this workflow.'
           exit 1 # prevents further steps from running
-       - name: Send Slack notification if workflow fails
-         if: failure() 
-         run: |
-           echo 'This happened'
+      - name: Send Slack notification if workflow fails
+        if: failure() 
+        run: |
+          echo 'This happened'
